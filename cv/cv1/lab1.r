@@ -89,4 +89,4 @@ head(data_slice,5)
 # Instead of creating a new column, replace the original values with the logged ones.
 
 data$wage_eur<-log(data$wage_eur)
-head(data[["wage_eur"]],5)
+head(data["wage_eur"],5)
