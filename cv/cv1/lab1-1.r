@@ -1,5 +1,5 @@
 #' ---
-#' title: Lab1
+#' title: Lab1-1
 #' author: Ema Richnakova
 #' ---
 

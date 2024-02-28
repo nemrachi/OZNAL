@@ -214,7 +214,10 @@ data %>%
             max_dribbling = max(skill_dribbling),
             number_of_records = n())
 
-# TODO dopisat zo stranky
+# Ordering rows with arrange()
+data %>% 
+  select(short_name, dob, league_level, skill_dribbling) %>%
+  arrange(desc(skill_dribbling))
 
 ###############
 ### TUT 3.4 ###
