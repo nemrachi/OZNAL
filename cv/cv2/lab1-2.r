@@ -10,7 +10,7 @@ library(tidyverse)
 library(magrittr) # Implements pipes 
 
 getwd() # Find where you are
-#setwd("./Elements of AI/Data/FIFA 22") # Set the correct path to players_22.csv
+#setwd("./cv") # Set the correct path to players_22.csv
 list.files() # List all files in the working directory
 
 data <- read_csv("players_22.csv", col_names = TRUE, num_threads = 4) # Read data into R
@@ -30,7 +30,7 @@ step_1 <- data %>%
   # povodne "Spanish Primera Division" -> opravene na "Spain Primera Division"
   filter(league_name %in% c("French Ligue 1","Spain Primera Division","English Premier League","German 1. Bundesliga","Italian Serie A")) %>%
   group_by(preferred_foot,league_name) %>%
-  summarise(Count = n()) %>% # tu bolo povodne summary, to bola asi chyba
+  summarise(Count = n()) %>% # tu bolo povodne summary, to bola asi chyba # alebo tally()
   rename(League = league_name, Pref_Foot = preferred_foot) %>%
   print(n = 3)
 #-----Theme defaults-----
@@ -88,7 +88,7 @@ step_2 <- step_1 %>%
   group_by(Pref_Foot,Position) %>% # Group data by foot preference and position  
   summarise(Count=n()) %>% # Generate raw counts for each position
   pivot_wider(names_from=Position,values_from=Count) %>% # Spread
-  mutate_all(~coalesce(.x, 0)) # Convert missing values to 0 
+  mutate_all(~coalesce(.x, 0)) # Convert missing values to 0 # alebo cez replace()
 step_2
 
 ### task3

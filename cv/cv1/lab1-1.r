@@ -10,7 +10,7 @@
 library(tidyverse)
 library(lobstr)
 
-setwd("./Elements of AI/Data/FIFA 22") # Set the correct path to players_22.csv
+setwd("./cv") # Set the correct path to players_22.csv
 getwd() # Find where you are
 # list.files() # List all files in the working directory
 
