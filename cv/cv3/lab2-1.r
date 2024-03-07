@@ -33,9 +33,9 @@ library(data.table) # Implements the %like% operator
 # %like% str pattern matching with partial matches
 data %<>% mutate(
   role = case_when(
-    player_positions %like% c("ST","RW","LW","CF","CAM") ~ "offense",
-    player_positions %like% c("LB","LWB","RB","RWB","RB","CDM") ~ "defense",
-    player_positions %like% c("GK") ~ "goalkeeper",
+    player_positions %like% "ST|RW|LW|CF|CAM" ~ "offense",
+    player_positions %like% "LB|LWB|RB|RWB|RB|CDM" ~ "defense",
+    player_positions %like% "GK" ~ "goalkeeper",
     .default = "midfielder"
   )
 )
@@ -106,6 +106,8 @@ model <- data %>%
   dplyr::filter(role=="offense") %$% # Select offensive players
   lm(formula=overall~skill_dribbling+preferred_foot) # Formalize model parameters
 summary(model) # Get more detailed statistics of a model fit
+
+tidy(model) # ina funckia, pytana v task 5
 
 # trochu ine hodnoty mi vyhadzaju so summary ?? mam zle data ?? TODO
 
