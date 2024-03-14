@@ -25,7 +25,7 @@ library(data.table) # Implements %like%
 data <- read_csv("players_22.csv", col_names = TRUE, num_threads = 4) # Read data into R
 data # Check that data are properly loaded 
 
-### task >2
+### task 2
 # A quick glance onto data tells us that there are several player_positions per record.
 # To classify a player into one of four classes — offense, defense, midfielder and a goal 
 # keeper — use your code from a previous exercise.
@@ -81,8 +81,9 @@ data %>%
 # Adapt the previous code to discriminate offensive players only from goal keepers. 
 # Has the shape of the S-function changed? If yes, why?
 
+# tuto ten graf uplne nesedi
 data %>%
-  filter(role!="goalkeeper")
+  filter(role=="offense" | role=="goalkeeper")
   ggplot(data, mapping=aes(x=dribbling,y=role_oneHot)) + # Define variables for X an Y axix in aes()
   geom_point(position = position_jitter(width = 0.3, height = 0.06), 
              alpha = 0.05, 
@@ -97,6 +98,11 @@ data %>%
 # Use knowledge from linear regression exercise to retrieve the coefficients of the logistic function.
 # Interpret your findings. You should be intrepreting values like these, or similar.
 
+# TEST?
+# units of coefficients = ?
+# if skill_dribbling=0, log odds are estimate intercept (-6.23)
+# significant coeficient check in p-value (ako bude hrac klasifikovaný)
+
 # TODO - mozno inu funkciu pouzit?
 coef <- coef(summary(model))
 coef
@@ -106,7 +112,7 @@ coef
 # print first 10 values.
 
 # TODO - mierne ine data a aj nedfinovane NA
-model.probabilities <- predict(model, data, type = "response")
+model.probabilities <- predict(model, data, type = "response") # model$fitted.values TODO
 head(model.probabilities,10)
 
 ### task 9
