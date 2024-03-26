@@ -72,10 +72,11 @@ confusion.matrix
 ### task 5
 # Revisit the contingency matrix from Task 3. Fill in a R code that calculates accuracy using the following formula.
 # \(Accuracy = \dfrac{TP + TN}{P + N}\)
-TP <- confusion.matrix$table[2,2]
-FP <- confusion.matrix$table[2,1]
-TN <- confusion.matrix$table[1,1]
-FN <- confusion.matrix$table[1,2]
+ct <- confusion.matrix$table # contingencna tabulka
+TP <- ct[2,2]
+FP <- ct[2,1]
+TN <- ct[1,1]
+FN <- ct[1,2]
 P <- TP+FN
 N <- FP+TN
 
@@ -94,6 +95,8 @@ paste("Class proportions are: ", proportion.of.1, proportion.of.0, "for 1 and 0,
 # \(Precision = \dfrac{TP}{FP+TP}\)
 precision <- TP/(FP+TP)
 precision # quantifies the proportion of correct “positive” predictions made by the model.
+NPV <- TN /(TN+FN)
+NPV
 
 ### task 8
 # You have already calculated precision, so let’s calculate recall this time.
@@ -114,3 +117,6 @@ f1score <- 2*(precision*recall)/(precision+recall)
 f1score
 
 # As a general guideline, an F1 score of 0.7 or higher is often considered good.
+specificity <- TN / (TN+FD)
+specificity # o pozitivnych nam to povie
+# o negativnych
